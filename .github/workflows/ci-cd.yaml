@@ -1,1 +1,16 @@
 name: ci-cd
+
+on: [push]
+
+
+jobs:
+  ember-build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: conda-incubator/setup-miniconda@v3
+        with:
+          activate-environment: ember-build
+          environment-file: environment.yaml
+          miniforge-version: latest
+      
