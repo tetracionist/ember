@@ -14,3 +14,10 @@ jobs:
           environment-file: environment.yaml
           miniforge-version: latest
       
+      - name: scons build
+        run: |
+          scons build
+
+      - name: scons install
+        run: |
+          scons install 
