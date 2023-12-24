@@ -16,7 +16,8 @@ jobs:
       
       - name: View build logs (only on failure)
         run: |
-          dir "C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools" /s
+          cd "  cd "C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\MSBuild"
+          dir
 
 
       - uses: conda-incubator/setup-miniconda@v3
