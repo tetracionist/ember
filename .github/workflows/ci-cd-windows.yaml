@@ -11,12 +11,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Install Chocolatey
-        run: |
-          Set-ExecutionPolicy Bypass -Scope Process -Force; 
-          [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; 
-          iex ((Invoke-WebRequest -Uri https://chocolatey.org/install.ps1).Content)
-    
       - name: Install MSVC using Chocolatey
         run: choco install visualcpp-build-tools -y
 
@@ -28,6 +22,8 @@ jobs:
           auto-activate-base: false
           python-version: ${{ matrix.python-version }}
       
+   
+
       - name: scons build
         run: scons build
 
