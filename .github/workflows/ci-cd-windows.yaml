@@ -29,7 +29,7 @@ jobs:
 
       - name: View build logs (only on failure)
         if: failure()
-        run: cat ember.log
+        run: cat config.log
 
       - name: scons install
         run: scons install 
