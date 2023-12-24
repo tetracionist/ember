@@ -483,7 +483,6 @@ if os.name == 'nt' and env.subst('$CXX') != 'cl':
 make_setup = env.SubstFile('#python/setup.cfg', '#python/setup.cfg.in')
 script = textwrap.dedent("""\
     from sysconfig import *
-    import re
     import numpy, json, site
     vars = get_config_vars()
     vars['np_include'] = numpy.get_include()
@@ -512,11 +511,7 @@ env["py_version_nodot"] = py_info['py_version_nodot']
 # workaround because macosx tries to build with 10.9 instead
 # of what was specified in deployment target 
 if py_info["plat"].split('-')[0] == 'macosx':
-    py_info['plat'] = re.sub(
-        r'(\d+\.\d+\)', 
-        env['ENV']['MACOSX_DEPLOYMENT_TARGET'],
-        py_info['plat']
-    )
+    py_info['plat'] = re.sub(r'(\d+\.\d+\)', env['ENV']['MACOSX_DEPLOYMENT_TARGET'],py_info['plat'])
     
 env["py_plat"] = py_info['plat'].replace('-', '_').replace('.', '_')
 env["site_packages"] = py_info["site_packages"]
