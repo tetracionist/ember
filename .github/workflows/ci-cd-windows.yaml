@@ -21,8 +21,8 @@ jobs:
       
    
 
+      - uses: ilammy/msvc-dev-cmd@v1
       - name: scons build
-        uses: ilammy/msvc-dev-cmd@v1
         run: scons build
 
       - name: View build logs (only on failure)
