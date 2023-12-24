@@ -1,23 +1,23 @@
 name: ci-cd (mac/linux)
 
-on:
-  push:
-    branches:
-      - main
-
-
+on: [push]
+    
 jobs:
   ember-build:
     strategy:
       matrix: 
-        os: [ubuntu-latest, macos-latest]
+        os: [ubuntu-latest, macos-latest, windows-2019]
         python-version: ["3.8", "3.9", "3.10", "3.11"]
     runs-on: ${{ matrix.os }}
-    defaults:
-      run:
-        shell: bash -el {0}
+
     steps:
       - uses: actions/checkout@v4
+
+      - uses: ilammy/msvc-dev-cmd@v1.12.1
+        if: ${{ matrix.os }} == windows-2019
+        with:
+          vsversion: 2019
+
       - uses: conda-incubator/setup-miniconda@v3
         with:
           activate-environment: ember-build
@@ -36,8 +36,3 @@ jobs:
       - name: scons install
         run: scons install 
 
-      - name: View install logs (only on failure)
-        if: failure()
-        run: |
-          cd build
-          ls -alt
