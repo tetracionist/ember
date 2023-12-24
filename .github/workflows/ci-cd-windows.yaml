@@ -8,17 +8,11 @@ jobs:
       matrix: 
         python-version: ["3.11"]
     runs-on: windows-latest
+    defaults:
+      shell: pwsh
     steps:
       - uses: actions/checkout@v4
-
-      - name: Install MSVC using Chocolatey
-        run: choco install visualstudio2019buildtools -y --package-parameters "--allWorkloads --includeRecommended --includeOptional --passive --locale en-US"
-      
-      - name: View build logs (only on failure)
-        run: |
-          cd "C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools"
-          dir
-
+      - uses: ilammy/msvc-dev-cmd@v1
 
       - uses: conda-incubator/setup-miniconda@v3
         with:
@@ -32,6 +26,10 @@ jobs:
 
       - name: scons build
         run: scons build
+
+      - name: View build logs (only on failure)
+        if: failure()
+        run: cat ember.log
 
       - name: scons install
         run: scons install 
