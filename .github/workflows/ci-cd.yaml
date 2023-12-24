@@ -25,7 +25,9 @@ jobs:
         run: mamba install cxx-compiler
 
       - name: scons build
-        run: scons build
+        run: |
+          conda activate ember-build
+          scons build
 
       - name: View build logs (only on failure)
         if: failure()
