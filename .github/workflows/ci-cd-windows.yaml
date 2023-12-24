@@ -16,7 +16,7 @@ jobs:
       
       - name: View build logs (only on failure)
         run: |
-          cd "  cd "C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\MSBuild"
+          cd "C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\MSBuild"
           dir
 
 
