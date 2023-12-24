@@ -30,7 +30,7 @@ jobs:
       - name: View build logs (only on failure)
         if: failure()
         run: |
-          dir "C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools" /s
+          dir "C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools" /s /b
 
       - name: scons install
         run: scons install 
