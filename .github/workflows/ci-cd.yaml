@@ -21,6 +21,9 @@ jobs:
           auto-activate-base: false
           python-version: ${{ matrix.python-version }}
       
+      - name: install compiler
+        run: mamba install cxx-compiler
+
       - name: scons build
         run: scons build
 
