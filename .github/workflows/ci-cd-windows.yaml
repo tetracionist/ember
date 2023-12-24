@@ -10,6 +10,16 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
+
+      - name: Install Chocolatey
+        run: |
+          Set-ExecutionPolicy Bypass -Scope Process -Force; 
+          [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; 
+          iex ((Invoke-WebRequest -Uri https://chocolatey.org/install.ps1).Content)
+    
+      - name: Install MSVC using Chocolatey
+        run: choco install visualcpp-build-tools -y
+
       - uses: conda-incubator/setup-miniconda@v3
         with:
           activate-environment: ember-build
