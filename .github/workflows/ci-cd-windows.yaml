@@ -15,7 +15,6 @@ jobs:
         run: choco install visualstudio2019buildtools -y
       
       - name: View build logs (only on failure)
-        if: failure()
         run: |
           dir "C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools" /s
 
