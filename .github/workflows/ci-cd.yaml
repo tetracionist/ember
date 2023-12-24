@@ -5,7 +5,10 @@ on: [push]
 
 jobs:
   ember-build:
-    runs-on: windows-latest
+    strategy:
+      matrix: 
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
       - uses: conda-incubator/setup-miniconda@v3
@@ -15,8 +18,11 @@ jobs:
           miniforge-version: latest
       
       - name: scons build
-        run: |
-          scons build
+        run: scons build
+
+      - name: View build logs (only on failure)
+        if: failure()
+        run: 
 
       - name: scons install
         run: |
