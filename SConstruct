@@ -483,10 +483,20 @@ if os.name == 'nt' and env.subst('$CXX') != 'cl':
 make_setup = env.SubstFile('#python/setup.cfg', '#python/setup.cfg.in')
 script = textwrap.dedent("""\
     from sysconfig import *
+    import re
     import numpy, json, site
     vars = get_config_vars()
     vars['np_include'] = numpy.get_include()
-    vars['plat'] = get_platform()
+    if get_platform().split('-')[0] == 'macosx':
+        
+        vars['plat'] = re.sub(
+           r'(\d+\.\d+\)', 
+           env['ENV']['MACOSX_DEPLOYMENT_TARGET'],
+           get_platform()
+        )
+    else: 
+       vars['plat'] = get_platform()
+    
     vars['site_packages'] = [d for d in site.getsitepackages() if d.endswith('-packages')]
     print(json.dumps(vars))
     """)
