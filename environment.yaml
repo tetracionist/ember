@@ -24,5 +24,4 @@ dependencies:
 - pip
 - wheel
 - pytest
-- cxx-compiler
 # see doc-environment.yaml for packages needed to build the documentation
