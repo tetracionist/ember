@@ -26,8 +26,7 @@ jobs:
 
       - name: View build logs (only on failure)
         if: failure()
-        run: dir
+        run: cat config.log
 
       - name: scons install
-        run: |
-          scons install 
+        run: scons install 
