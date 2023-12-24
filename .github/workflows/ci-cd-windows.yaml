@@ -8,8 +8,6 @@ jobs:
       matrix: 
         python-version: ["3.11"]
     runs-on: windows-latest
-    defaults:
-      shell: pwsh
     steps:
       - uses: actions/checkout@v4
       - uses: ilammy/msvc-dev-cmd@v1
