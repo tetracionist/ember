@@ -30,8 +30,8 @@ jobs:
       - name: View build logs (only on failure)
         if: failure()
         run: |
-          cat config.log
-          cat ember.conf
+          cd "C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools"
+          dir
 
       - name: scons install
         run: scons install 
