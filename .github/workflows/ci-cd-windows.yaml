@@ -1,0 +1,38 @@
+name: ci-cd (windows)
+
+on: [push]
+
+jobs:
+  ember-build:
+    strategy:
+      matrix: 
+        python-version: ["3.8", "3.9", "3.10", "3.11"]
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: bash -el {0}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: conda-incubator/setup-miniconda@v3
+        with:
+          activate-environment: ember-build
+          environment-file: environment.yaml
+          miniforge-version: latest
+          auto-activate-base: false
+          python-version: ${{ matrix.python-version }}
+      
+      - name: scons build
+        run: scons build
+
+      - name: View build logs (only on failure)
+        if: failure()
+        run: cat config.log
+
+      - name: scons install
+        run: scons install 
+
+      - name: View install logs (only on failure)
+        if: failure()
+        run: |
+          cd build
+          ls -alt
