@@ -1,7 +1,7 @@
 name: ci-cd (windows)
 
 on:
-  push:
+  pull_request:
     branches:
       - main
 
@@ -9,7 +9,7 @@ jobs:
   ember-build:
     strategy:
       matrix: 
-        python-version: ["3.11"]
+        python-version: ["3.8", "3.9", "3.10", "3.11"]
     runs-on: windows-2019
     steps:
       - uses: actions/checkout@v4
