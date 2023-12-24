@@ -12,11 +12,11 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Install MSVC using Chocolatey
-        run: choco install visualstudio2019buildtools -y
+        run: choco install visualstudio2019buildtools -y --package-parameters "--allWorkloads --includeRecommended --includeOptional --passive --locale en-US"
       
       - name: View build logs (only on failure)
         run: |
-          cd "C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\MSBuild"
+          cd "C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools"
           dir
 
 
