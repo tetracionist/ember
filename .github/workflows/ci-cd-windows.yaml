@@ -1,6 +1,9 @@
 name: ci-cd (windows)
 
-on: [push]
+on:
+  push:
+    branches:
+      - main
 
 jobs:
   ember-build:
