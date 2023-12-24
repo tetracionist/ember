@@ -16,13 +16,14 @@ jobs:
           activate-environment: ember-build
           environment-file: environment.yaml
           miniforge-version: latest
+          auto-activate-base: false
       
       - name: scons build
         run: scons build
 
       - name: View build logs (only on failure)
         if: failure()
-        run: 
+        run: dir
 
       - name: scons install
         run: |
