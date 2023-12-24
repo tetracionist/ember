@@ -1,6 +1,9 @@
 name: ci-cd (mac/linux)
 
-on: [push]
+on: 
+  pull-request:
+    branches:
+      - main
     
 jobs:
   ember-build:
