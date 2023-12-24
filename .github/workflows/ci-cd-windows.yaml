@@ -13,6 +13,12 @@ jobs:
 
       - name: Install MSVC using Chocolatey
         run: choco install visualstudio2019buildtools -y
+      
+      - name: View build logs (only on failure)
+        if: failure()
+        run: |
+          dir "C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools" /s
+
 
       - uses: conda-incubator/setup-miniconda@v3
         with:
@@ -26,11 +32,6 @@ jobs:
 
       - name: scons build
         run: scons build
-
-      - name: View build logs (only on failure)
-        if: failure()
-        run: |
-          dir "C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools" /s /b
 
       - name: scons install
         run: scons install 
