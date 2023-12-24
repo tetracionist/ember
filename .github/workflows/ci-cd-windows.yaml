@@ -12,7 +12,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Install MSVC using Chocolatey
-        run: choco install visualcpp-build-tools -y
+        run: choco install choco install visualstudio2019buildtools -y
 
       - uses: conda-incubator/setup-miniconda@v3
         with:
