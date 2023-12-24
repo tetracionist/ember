@@ -10,7 +10,6 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: ilammy/msvc-dev-cmd@v1
 
       - uses: conda-incubator/setup-miniconda@v3
         with:
@@ -23,6 +22,7 @@ jobs:
    
 
       - name: scons build
+        uses: ilammy/msvc-dev-cmd@v1
         run: scons build
 
       - name: View build logs (only on failure)
