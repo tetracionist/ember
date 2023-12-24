@@ -10,6 +10,9 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: ilammy/msvc-dev-cmd@v1.12
+        with:
+          vsversion: 2019
 
       - uses: conda-incubator/setup-miniconda@v3
         with:
@@ -19,9 +22,6 @@ jobs:
           auto-activate-base: false
           python-version: ${{ matrix.python-version }}
       
-   
-
-      - uses: ilammy/msvc-dev-cmd@v1
       - name: scons build
         run: scons build
 
