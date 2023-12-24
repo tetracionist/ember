@@ -10,7 +10,7 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: ilammy/msvc-dev-cmd@v1.12
+      - uses: ilammy/msvc-dev-cmd@v1.12.1
         with:
           vsversion: 2019
 
