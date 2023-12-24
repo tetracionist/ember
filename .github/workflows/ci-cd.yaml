@@ -4,16 +4,17 @@ on: [push]
     
 jobs:
   ember-build:
+    
     strategy:
       matrix: 
         os: [ubuntu-latest, macos-latest]
         python-version: ["3.8", "3.9", "3.10", "3.11"]
     
-      defaults:
-        run:
-          shell: bash -el {0}
+    defaults:
+      run:
+        shell: bash -el {0}
 
-      runs-on: ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
 
     steps:
       - uses: actions/checkout@v4
